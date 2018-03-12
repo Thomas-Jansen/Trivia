@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "609487183159",
+    "firebase_url": "https://trivia-4566b.firebaseio.com",
+    "project_id": "trivia-4566b",
+    "storage_bucket": "trivia-4566b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609487183159:android:50dd9862686f9d8b",
+        "android_client_info": {
+          "package_name": "jansen.thomas.trivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609487183159-1t7su248ejkgd3esh7nmbbj42m0q1tkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8y3orJGdB3ppfKgoopjx5IEpIm5RoPWs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
