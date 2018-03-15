@@ -34,7 +34,10 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         questionCount = nextQuestionIntent.getIntExtra("questionCount", 1);
         totalScore = nextQuestionIntent.getIntExtra("totalScore", 0);
         if (questionCount == 6) {
+            View emptyLayout = getLayoutInflater().inflate(R.layout.empty_layout, null);
+            setContentView(emptyLayout);
             goToScore();
+            return;
         }
 
         questionView = findViewById(R.id.textViewQuestion);
@@ -46,6 +49,8 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         quitButton.setOnClickListener(new onQuitClick());
         Button checkButton = findViewById(R.id.buttonCheckAnswer);
         checkButton.setOnClickListener(new onCheckAnswerClick());
+        Button hintButton = findViewById(R.id.buttonGetHint);
+        hintButton.setOnClickListener(new onHintClick());
 
         new TriviaHelper(getApplicationContext()).getNextQuestion(this);
     }
@@ -91,6 +96,15 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         }
     }
 
+    public class onHintClick implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            totalScore -= 100;
+            String hint = currentQuestion.getCorrectAnswer();
+            Toast.makeText(GameActivity.this, hint, Toast.LENGTH_LONG).show();
+        }
+    }
+
     public class onCheckAnswerClick implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -113,7 +127,7 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-//                    currentQuestion.setAnswers(String[0] = givenAnswer);
+                    currentQuestion.setAnswers(givenAnswer, givenAnswers);
                     Intent intentNext = new Intent(GameActivity.this, GameActivity.class);
                     questionCount += 1;
                     if (getPoints) {
@@ -125,7 +139,7 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
                 }
             });
 
-            if (givenAnswers < 3 && !getPoints) {
+            if (givenAnswers < 2 && !getPoints) {
                 alertAnswer.setNegativeButton("Retry", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -162,14 +176,12 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
             public void onClick(DialogInterface dialog, int which) {
                 name[0] = String.valueOf(nameTextEdit.getText());
 
+                Highscore new_highscore = new Highscore(name[0], totalScore);
                 Intent scoreIntent = new Intent(GameActivity.this, HighscoreActivity.class);
-                scoreIntent.putExtra("totalScore", totalScore);
-                scoreIntent.putExtra("name", name[0]);
+                scoreIntent.putExtra("highscore", new_highscore);
                 startActivity(scoreIntent);
             }
         });
         askForName.show();
-
-
     }
 }

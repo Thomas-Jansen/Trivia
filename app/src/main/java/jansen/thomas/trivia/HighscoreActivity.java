@@ -3,9 +3,10 @@ package jansen.thomas.trivia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
-public class HighscoreActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class HighscoreActivity extends AppCompatActivity implements HighscoresHelper.Callback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,11 +14,18 @@ public class HighscoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_highscore);
 
         Intent scoreIntent = getIntent();
-        String score = String.valueOf(scoreIntent.getIntExtra("totalScore", 0));
-        String name = scoreIntent.getStringExtra("name");
-        TextView scoreView = findViewById(R.id.textViewTotalScore);
-        scoreView.setText(score);
-        TextView nameView = findViewById(R.id.textViewName);
-        nameView.setText(name);
+        Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
+
+        new HighscoresHelper(getApplicationContext()).postNewHighScore(new_highscore);
+    }
+
+    @Override
+    public void gotHighscores(ArrayList<Highscore> highscores) {
+
+    }
+
+    @Override
+    public void gotError(String message) {
+
     }
 }

@@ -1,6 +1,7 @@
 package jansen.thomas.trivia;
 
 import android.content.Context;
+import android.text.Html;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -8,7 +9,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,12 +39,14 @@ public class TriviaHelper implements Response.Listener<JSONArray>, Response.Erro
             activityGame.gotQuestionError("Something went wrong");
         }
         try {
-            question = objectQuestion.getString("question");
+            question = Html.escapeHtml(objectQuestion.getString("question"));
             answer = objectQuestion.getString("answer");
             maxScore = objectQuestion.getInt("value");
         } catch (JSONException e) {
             e.printStackTrace();
-            activityGame.gotQuestionError("Something went terribly wrong");
+            activityGame.gotQuestionError("Retry getting question");
+            getNextQuestion(activityGame);
+            return;
         }
         Question newQuestion = new Question(question, answer, maxScore);
         ArrayList<Question> newQuestionList  = new ArrayList<Question>();

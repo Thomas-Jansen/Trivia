@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "609487183159-fjtjijguj2k7f9cotkldt2g3aun00liq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jansen.thomas.trivia",
+            "certificate_hash": "05513c5c199faab6a50657096c8f6da48727afcc"
+          }
+        },
+        {
           "client_id": "609487183159-1t7su248ejkgd3esh7nmbbj42m0q1tkc.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609487183159-1t7su248ejkgd3esh7nmbbj42m0q1tkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

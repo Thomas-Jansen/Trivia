@@ -18,8 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity" android:noHistory="true"/>
-        <activity android:name=".HighscoreActivity"></activity>
+        <activity
+            android:name=".GameActivity"
+            android:noHistory="true" />
+        <activity android:name=".HighscoreActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
