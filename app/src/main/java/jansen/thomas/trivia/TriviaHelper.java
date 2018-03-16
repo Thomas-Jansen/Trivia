@@ -40,7 +40,7 @@ public class TriviaHelper implements Response.Listener<JSONArray>, Response.Erro
         }
         try {
             question = Html.escapeHtml(objectQuestion.getString("question"));
-            answer = objectQuestion.getString("answer");
+            answer = Html.escapeHtml(objectQuestion.getString("answer"));
             maxScore = objectQuestion.getInt("value");
         } catch (JSONException e) {
             e.printStackTrace();

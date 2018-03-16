@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Highscore implements Serializable{
 
     private String name;
-    private int score;
+    private Long score;
 
-    public Highscore(String name, int score) {
+    public Highscore(String name, Long score) {
         this.name = name;
         this.score = score;
     }
@@ -16,7 +16,7 @@ public class Highscore implements Serializable{
         return name;
     }
 
-    public int getScore() {
+    public Long getScore() {
         return score;
     }
 
@@ -24,7 +24,7 @@ public class Highscore implements Serializable{
         this.name = name;
     }
 
-    public void setScore(int score) {
+    public void setScore(Long score) {
         this.score = score;
     }
 }

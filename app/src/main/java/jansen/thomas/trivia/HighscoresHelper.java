@@ -37,23 +37,25 @@ public class HighscoresHelper implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
 
-        ArrayList<Highscore> scoresArray = null;
+        ArrayList<Highscore> scoresArray = new ArrayList<>();
         System.out.println("Data is aangekomen");
         for(DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
             HashMap hashMap = (HashMap) singleSnapshot.getValue();
             String name = (String) hashMap.get("name");
-            int score = (int) hashMap.get("score");
+            Long score = (Long) hashMap.get("score");
+            System.out.println(name);
+            System.out.println(score);
             Highscore highscore = new Highscore(name, score);
             scoresArray.add(highscore);
         }
         Collections.reverse(scoresArray);
-//        contextHighscore.gotHighscores(scoresArray);
+        activityHighscore.gotHighscores(scoresArray);
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
         System.out.println("Er is een error");
-//        activityHighscore.gotError(databaseError.getMessage());
+        activityHighscore.gotError(databaseError.getMessage());
     }
 
     public void getHihgscores() {

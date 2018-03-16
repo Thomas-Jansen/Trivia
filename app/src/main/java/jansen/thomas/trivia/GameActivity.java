@@ -1,5 +1,6 @@
 package jansen.thomas.trivia;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,11 +21,12 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
     TextView questionNumberView;
     Question currentQuestion;
     int questionCount;
-    int totalScore;
+    Long totalScore;
     String givenAnswer;
     int givenAnswers = 0;
     Boolean getPoints = false;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +34,9 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
 
         Intent nextQuestionIntent = getIntent();
         questionCount = nextQuestionIntent.getIntExtra("questionCount", 1);
-        totalScore = nextQuestionIntent.getIntExtra("totalScore", 0);
+        totalScore = nextQuestionIntent.getLongExtra("totalScore", 0);
         if (questionCount == 6) {
-            View emptyLayout = getLayoutInflater().inflate(R.layout.empty_layout, null);
+            @SuppressLint("InflateParams") View emptyLayout = getLayoutInflater().inflate(R.layout.empty_layout, null);
             setContentView(emptyLayout);
             goToScore();
             return;
