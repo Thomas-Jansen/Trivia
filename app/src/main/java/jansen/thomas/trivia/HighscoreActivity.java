@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+// Shows the high scores as a leader board in a listview.
 public class HighscoreActivity extends AppCompatActivity implements HighscoresHelper.Callback{
 
     @Override
@@ -15,12 +16,16 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
+        // Get new highscore from GameActivity and send it to HighscoreHelper to add it to the database.
         Intent scoreIntent = getIntent();
         Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
         new HighscoresHelper(this).postNewHighScore(new_highscore);
+
+        // Get all high scores to show in the listview.
         new HighscoresHelper(this).getHihgscores();
     }
 
+    // When the high scores have arrived, create a adapter to set them in the listView.
     @Override
     public void gotHighscores(ArrayList<Highscore> highscores) {
         ListView highscoreView = findViewById(R.id.ListViewHighscores);
@@ -28,6 +33,7 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
         highscoreView.setAdapter(adapter);
     }
 
+    // When received an error, show the message to the user.
     @Override
     public void gotError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+// A custom ArrayListAdapter to show the high scores in the listView.
 public class HighscoresAdapter extends ArrayAdapter<Highscore>  {
 
     ArrayList<Highscore> highscoreArrayList;
@@ -18,6 +19,7 @@ public class HighscoresAdapter extends ArrayAdapter<Highscore>  {
 
     public HighscoresAdapter(@NonNull Context context, int resource, ArrayList<Highscore> objects ) {
         super(context, resource, objects);
+
         highscoreArrayList = objects;
         contextHighscore = context;
     }

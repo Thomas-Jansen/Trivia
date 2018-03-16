@@ -2,6 +2,7 @@ package jansen.thomas.trivia;
 
 import java.io.Serializable;
 
+// A class to hold the question as an Object.
 public class Question implements Serializable{
 
     private String question;

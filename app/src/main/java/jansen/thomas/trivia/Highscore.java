@@ -2,6 +2,7 @@ package jansen.thomas.trivia;
 
 import java.io.Serializable;
 
+// A class to hold the high scores.
 public class Highscore implements Serializable{
 
     private String name;
@@ -18,13 +19,5 @@ public class Highscore implements Serializable{
 
     public Long getScore() {
         return score;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setScore(Long score) {
-        this.score = score;
     }
 }
