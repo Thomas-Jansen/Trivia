@@ -47,7 +47,7 @@ public class HighscoresHelper implements ValueEventListener {
             scoresArray.add(highscore);
         }
         Collections.reverse(scoresArray);
-//        activityHighscore.gotHighscores(ArrayList<Highscore> scoresArray);
+//        contextHighscore.gotHighscores(scoresArray);
     }
 
     @Override
