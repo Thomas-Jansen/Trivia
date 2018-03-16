@@ -3,6 +3,7 @@ package jansen.thomas.trivia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,7 +23,9 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
 
     @Override
     public void gotHighscores(ArrayList<Highscore> highscores) {
-
+        ListView highscoreView = findViewById(R.id.ListViewHighscores);
+        HighscoresAdapter adapter = new HighscoresAdapter(this, R.layout.highscore_item, highscores);
+        highscoreView.setAdapter(adapter);
     }
 
     @Override
