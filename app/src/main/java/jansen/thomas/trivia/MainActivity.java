@@ -37,3 +37,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
+// The picture used in MainActivity and as the App pictogram is from
+// https://en.wikipedia.org/wiki/File:Trivia.png#filelinks.
