@@ -16,10 +16,13 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
-        // Get new highscore from GameActivity and send it to HighscoreHelper to add it to the database.
-        Intent scoreIntent = getIntent();
-        Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
-        new HighscoresHelper(this).postNewHighScore(new_highscore);
+        // Prevent reposting a high score by checking if savedInstanceState is empty.
+        if (savedInstanceState == null) {
+            // Get new highscore from GameActivity and send it to HighscoreHelper to add it to the database.
+            Intent scoreIntent = getIntent();
+            Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
+            new HighscoresHelper(this).postNewHighScore(new_highscore);
+        }
 
         // Get all high scores to show in the listview.
         new HighscoresHelper(this).getHihgscores();

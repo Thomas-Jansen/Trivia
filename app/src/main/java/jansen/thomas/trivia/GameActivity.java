@@ -40,16 +40,6 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         questionCount = nextQuestionIntent.getIntExtra("questionCount", 1);
         totalScore = nextQuestionIntent.getLongExtra("totalScore", 0);
 
-        // If 5 questions have been answered, set layout to an empty one
-        // and handle the rest in goToScore().
-        if (questionCount == 6) {
-            @SuppressLint("InflateParams") View emptyLayout = getLayoutInflater()
-                    .inflate(R.layout.empty_layout, null);
-            setContentView(emptyLayout);
-            goToScore();
-            return;
-        }
-
         // Different views and buttons with onClickListeners.
         questionView = findViewById(R.id.textViewQuestion);
         answerView = findViewById(R.id.editTextAnswer);
@@ -75,6 +65,16 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         else {
             // Request a random question from TriviaHelper.
             new TriviaHelper(getApplicationContext()).getNextQuestion(this);
+        }
+
+        // If 5 questions have been answered, set layout to an empty one
+        // and handle the rest in goToScore().
+        if (questionCount == 6) {
+            @SuppressLint("InflateParams") View emptyLayout = getLayoutInflater()
+                    .inflate(R.layout.empty_layout, null);
+            setContentView(emptyLayout);
+            goToScore();
+            return;
         }
     }
 
