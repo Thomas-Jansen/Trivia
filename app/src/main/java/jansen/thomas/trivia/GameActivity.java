@@ -63,8 +63,19 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         Button hintButton = findViewById(R.id.buttonGetHint);
         hintButton.setOnClickListener(new onHintClick());
 
-        // Request a random question from TriviaHelper.
-        new TriviaHelper(getApplicationContext()).getNextQuestion(this);
+        // If savedInstanceState is not empty, use the data in it.
+        if (savedInstanceState != null) {
+            currentQuestion = (Question) savedInstanceState.getSerializable("currentQuestion");
+            questionCount = savedInstanceState.getInt("questionCount");
+            totalScore = savedInstanceState.getLong("totalScore");
+
+            String questionString = currentQuestion.getQuestion();
+            questionView.setText(questionString);
+        }
+        else {
+            // Request a random question from TriviaHelper.
+            new TriviaHelper(getApplicationContext()).getNextQuestion(this);
+        }
     }
 
     @Override
@@ -74,14 +85,6 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         outState.putSerializable("currentQuestion", currentQuestion);
         outState.putInt("questionCount", questionCount);
         outState.putLong("totalScore", totalScore);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle inState) {
-
-        currentQuestion = (Question) inState.getSerializable("currentQuestion");
-        questionCount = inState.getInt("questionCount");
-        totalScore = inState.getLong("totalScore");
     }
 
     // When the new question has arrived, show it in questionView.
