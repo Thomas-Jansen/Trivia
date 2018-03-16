@@ -17,8 +17,8 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
 
         Intent scoreIntent = getIntent();
         Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
-        new HighscoresHelper(this, this).postNewHighScore(new_highscore);
-        new HighscoresHelper(this, this).getHihgscores();
+        new HighscoresHelper(this).postNewHighScore(new_highscore);
+        new HighscoresHelper(this).getHihgscores();
     }
 
     @Override

@@ -1,8 +1,5 @@
 package jansen.thomas.trivia;
 
-import android.app.Activity;
-import android.content.Context;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,16 +16,14 @@ public class HighscoresHelper implements ValueEventListener {
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
-    private Context contextHighscore;
-    private Activity activityHighscore;
+    private Callback activityHighscore;
 
     public interface Callback {
         void gotHighscores(ArrayList<Highscore> highscores);
         void gotError(String message);
     }
 
-    public HighscoresHelper(Context context, Activity activity) {
-        contextHighscore = context;
+    public HighscoresHelper(Callback activity) {
         activityHighscore = activity;
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();

@@ -34,6 +34,7 @@ public class HighscoresAdapter extends ArrayAdapter<Highscore>  {
         String name = highscore.getName();
         Long score = highscore.getScore();
         String scoreString = String.valueOf(score);
+        String number = String.valueOf(position + 1);
 
         TextView nameView = convertView.findViewById(R.id.textViewName);
         TextView scoreView = convertView.findViewById(R.id.textViewScore);
@@ -41,7 +42,7 @@ public class HighscoresAdapter extends ArrayAdapter<Highscore>  {
 
         nameView.setText(name);
         scoreView.setText(scoreString);
-        numberView.setText(position+1);
+        numberView.setText(number);
 
         return convertView;
     }
