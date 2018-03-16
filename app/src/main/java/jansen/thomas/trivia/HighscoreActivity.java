@@ -3,6 +3,7 @@ package jansen.thomas.trivia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,8 +16,8 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
 
         Intent scoreIntent = getIntent();
         Highscore new_highscore = (Highscore) scoreIntent.getSerializableExtra("highscore");
-
-        new HighscoresHelper(getApplicationContext()).postNewHighScore(new_highscore);
+        new HighscoresHelper(getApplicationContext(), this).postNewHighScore(new_highscore);
+        new HighscoresHelper(getApplicationContext(), this).getHihgscores();
     }
 
     @Override
@@ -26,6 +27,6 @@ public class HighscoreActivity extends AppCompatActivity implements HighscoresHe
 
     @Override
     public void gotError(String message) {
-
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
